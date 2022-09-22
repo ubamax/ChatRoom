@@ -3,8 +3,8 @@
 pragma solidity ^0.8.3;
 
 contract ChatRoom {
-    uint256 internal roomIds;
-    uint256 internal messageIds;
+    uint256 private roomIds;
+    uint256 private messageIds;
 
     struct Message {
         address sender;
@@ -20,25 +20,42 @@ contract ChatRoom {
         address[] roomMembers;
     }
 
-    mapping(uint256 => Room) internal rooms;
-    mapping(uint256 => Message[]) internal messages;
+    mapping(uint256 => Room) private rooms;
+    mapping(uint256 => Message[]) private messages;
+    mapping(uint => mapping(address => bool)) private joined;
+    mapping(uint => bool) private _exists;
 
-    // create new room
-    function newRoom(string memory _roomName, string memory _roomPhoto) public {
+
+    modifier exists(uint _roomId){
+        require(_exists[_roomId], "Query of nonexistent room");
+        _;
+    }
+
+    /// @dev create new room
+    /// @notice you will automatically be added to the chat room
+    /// @notice input data must not contain any empty values
+    function newRoom(string calldata _roomName, string calldata _roomPhoto) public {
+        require(bytes(_roomName).length > 0, "Empty room name");
+        require(bytes(_roomPhoto).length > 0, "Empty room photo");
         address[] memory roomMembers;
-        rooms[roomIds] = Room(
-            roomIds,
+        uint roomId = roomIds;
+        roomIds++;
+        rooms[roomId] = Room(
+            roomId,
             msg.sender,
             _roomName,
             _roomPhoto,
             roomMembers
         );
-        joinRoom(roomIds);
-        roomIds++;
+        _exists[roomId] = true;
+        joinRoom(roomId);
     }
 
-    // create a new message
-    function newMessage(string memory _message, uint256 _roomId) public {
+    /// @dev create a new message
+    /// @notice only chat room members can send new messages
+    function newMessage(string calldata _message, uint256 _roomId) public exists(_roomId) {
+        require(bytes(_message).length > 0, "Empty message");
+        require(joined[_roomId][msg.sender], "You haven't joined this room yet");
         Message memory _newMessage = Message(
             msg.sender,
             _message,
@@ -47,7 +64,7 @@ contract ChatRoom {
         messages[_roomId].push(_newMessage);
     }
 
-    // fetch all chat rooms and return to frontend
+    /// @dev fetch all chat rooms and return to frontend
     function chatRooms() public view returns (Room[] memory) {
         Room[] memory _rooms = new Room[](roomIds);
         for (uint256 i = 0; i < roomIds; i++) {
@@ -56,15 +73,19 @@ contract ChatRoom {
         return _rooms;
     }
 
-    // join a chat room
-    function joinRoom(uint256 _roomId) public {
+    /// @dev join a chat room
+    /// @notice you can only join a chat room once
+    function joinRoom(uint256 _roomId) public exists(_roomId) {
+        require(!joined[_roomId][msg.sender],"You have already joined this room");
+        joined[_roomId][msg.sender] = true;
         rooms[_roomId].roomMembers.push(msg.sender);
     }
 
-    // fetch room details
+    /// @dev fetch room details
     function roomDetails(uint256 _roomId)
         public
         view
+        exists(_roomId)
         returns (
             uint256 roomId,
             address roomCreator,
@@ -81,10 +102,11 @@ contract ChatRoom {
         roomMembers = room.roomMembers;
     }
 
-    // fetch room messages
+    /// @dev fetch room messages
     function roomMessages(uint256 _roomId)
         public
         view
+        exists(_roomId)
         returns (Message[] memory)
     {
         return messages[_roomId];
