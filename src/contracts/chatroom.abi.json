@@ -1,0 +1,166 @@
+[
+    {
+        "inputs": [],
+        "name": "chatRooms",
+        "outputs": [
+            {
+                "components": [
+                    {
+                        "internalType": "uint256",
+                        "name": "roomId",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "roomCreator",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "roomName",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "roomPhoto",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "address[]",
+                        "name": "roomMembers",
+                        "type": "address[]"
+                    }
+                ],
+                "internalType": "struct ChatRoom.Room[]",
+                "name": "",
+                "type": "tuple[]"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "_roomId",
+                "type": "uint256"
+            }
+        ],
+        "name": "joinRoom",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "_message",
+                "type": "string"
+            },
+            {
+                "internalType": "uint256",
+                "name": "_roomId",
+                "type": "uint256"
+            }
+        ],
+        "name": "newMessage",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "_roomName",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "_roomPhoto",
+                "type": "string"
+            }
+        ],
+        "name": "newRoom",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "_roomId",
+                "type": "uint256"
+            }
+        ],
+        "name": "roomDetails",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "roomId",
+                "type": "uint256"
+            },
+            {
+                "internalType": "address",
+                "name": "roomCreator",
+                "type": "address"
+            },
+            {
+                "internalType": "string",
+                "name": "roomName",
+                "type": "string"
+            },
+            {
+                "internalType": "string",
+                "name": "roomPhoto",
+                "type": "string"
+            },
+            {
+                "internalType": "address[]",
+                "name": "roomMembers",
+                "type": "address[]"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "_roomId",
+                "type": "uint256"
+            }
+        ],
+        "name": "roomMessages",
+        "outputs": [
+            {
+                "components": [
+                    {
+                        "internalType": "address",
+                        "name": "sender",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "string",
+                        "name": "message",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "time",
+                        "type": "uint256"
+                    }
+                ],
+                "internalType": "struct ChatRoom.Message[]",
+                "name": "",
+                "type": "tuple[]"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    }
+]
