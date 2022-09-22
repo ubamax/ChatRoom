@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=Source+Code+Pro&display=swap');
+
+.heading {
+    background-color: rgb(5, 97, 5);
+    height: 140px;
+    display: flex;
+}
+
+.head-text {
+    color: white;
+    font-size: 50px;
+    padding: 1rem;
+    padding-left: 2rem;
+    font-family: 'Source Code Pro', monospace;
+    font-weight: 700;
+    font-style: italic;
+}
+
+.bal {
+    margin-left: auto;
+    margin-right: 2rem;
+    margin-top: 1rem;
+    color: white;
+    font-size: 20px;
+}
+
+.chatrooms {
+    margin: 2rem; 
+}
+
+.rooms-head {
+    font-size: 2rem;
+}
+
+.rooms {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.room-prev {
+    margin: 1rem;
+    height: 400px;
+    width: 300px;    
+    box-shadow: 2px 2px 5px rgba(0, 128, 0, 0.616);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.room-prev img {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+}
+
+.room-prev .room-name {
+    font-size: 1.3rem;
+    margin: 1rem 0;
+}
+
+.room-creator {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.room-prev-btns {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;    
+}
+
+button a {
+    text-decoration: none;
+    color: black;
+}

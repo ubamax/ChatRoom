@@ -1,0 +1,90 @@
+.room {
+  border: solid 1px green;
+  width: 50%;
+  min-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  border-radius: 5px;
+}
+
+.chatroom-head {
+  background-color: rgb(9, 46, 1);
+  height: 100px;
+  width: 100%;
+  color: rgb(168, 151, 151);
+  display: flex;
+}
+
+.chatroom-head img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  margin: 1.5rem;
+}
+
+.head-info {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin-bottom: 1.2rem;
+}
+
+.head-name {
+  font-size: 1.3rem;
+  letter-spacing: 5px;
+}
+
+.head-m-count {
+  font-size: 0.8rem;
+}
+
+.chatroom-main {
+  min-height: 75%;
+  border: none;
+  outline: none;
+}
+
+input {
+  height: 100%;
+  outline: none;
+  width: 90%;
+  margin: 20px;
+}
+
+.send {
+  padding: 10px;
+}
+
+.send button {
+  margin-left: 10px;
+  color: white;
+  background-color: green;
+  font-weight: 400;
+}
+
+.chatmessage {
+  width: 60%;
+  background-color: rgba(128, 128, 128, 0.418);
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  color: rgba(0, 0, 0, 0.774);
+}
+
+.chatmessage-time {
+  margin-top: 20px;
+  color: black;
+  font-size: 12px;
+}
+
+.my-msg {
+  margin-left: auto;
+  background-color: rgba(0, 128, 0, 0.438);
+}
+
+.chatmessage-body {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
